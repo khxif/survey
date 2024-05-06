@@ -1,9 +1,10 @@
 import cors from "cors";
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import AuthRoutes from "./routes/AuthRoutes";
 
-process.loadEnvFile(".env");
+dotenv.config();
 const PORT = process.env.PORT || 8888;
 
 const app = express();
