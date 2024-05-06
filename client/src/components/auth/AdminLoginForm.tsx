@@ -96,11 +96,7 @@ export default function AdminLoginForm() {
               </FormItem>
             )}
           />
-          <Button
-            variant="outline"
-            className="w-full text-black font-semibold text-base"
-            type="submit"
-          >
+          <Button className="w-full font-semibold text-base" type="submit">
             Submit
           </Button>
         </form>
