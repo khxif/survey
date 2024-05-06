@@ -1,5 +1,6 @@
 import { sign } from "jsonwebtoken";
-process.loadEnvFile(".env");
+import dotenv from "dotenv";
+dotenv.config();
 
 export const createToken = (
   _id: string,

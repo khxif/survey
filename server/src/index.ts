@@ -2,9 +2,10 @@ import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
 import AuthRoutes from "./routes/AuthRoutes";
-process.loadEnvFile(".env");
 
+process.loadEnvFile(".env");
 const PORT = process.env.PORT || 8888;
+
 const app = express();
 
 app.use(express.json());
