@@ -1,13 +1,29 @@
-import * as LR from "@uploadcare/blocks";
-import blocksStyles from "@uploadcare/blocks/web/lr-file-uploader-regular.min.css?url";
+import { storage } from "@/config/firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { ChangeEvent } from "react";
+import { Input } from "./ui/input";
 
-LR.registerBlocks(LR);
+interface FileUploadProps {
+  value: string;
+  onChange: (src: string) => void;
+}
 
-export default function FileUpload() {
-  return (
-    <div>
-      <lr-config ctx-name="my-uploader" pubkey="db7be704b01da6fe827c" />
-      <lr-file-uploader-regular  ctx-name="my-uploader" css-src={blocksStyles} />
-    </div>
-  );
+export default function FileUpload({ onChange }: FileUploadProps) {
+  const handleUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files![0];
+    if (!file) return;
+    const storageRef = ref(storage, `pdfs/${file?.name}`);
+
+    try {
+      uploadBytes(storageRef, file).then(async () => {
+        await getDownloadURL(storageRef).then((downloadURL) => {
+          onChange(downloadURL);
+        });
+      });
+    } catch (error) {
+      console.error("Error uploading PDF", error);
+    }
+  };
+
+  return <Input type="file" accept=".pdf" onChange={handleUpload} />;
 }

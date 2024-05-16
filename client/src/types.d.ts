@@ -1,3 +1,5 @@
+declare module "survey-core/themes/sharp-dark";
+
 interface ChildrenProps {
   children: React.ReactNode;
 }
@@ -12,6 +14,7 @@ interface User {
   username: string;
   email: string;
   role: "HR-Admin" | "Super-Admin";
+  password?: string;
 }
 
 interface UserStore {
@@ -22,4 +25,12 @@ interface UserStore {
 interface ModalStore {
   createSurveyModalOpen: boolean;
   setCreateSurveyModalOpen: (open: boolean) => void;
+  createUserModalOpen: boolean;
+  setCreateUserModalOpen: (open: boolean) => void;
+}
+
+interface Survey {
+  _id: string;
+  name: string;
+  pdfUrl: string;
 }

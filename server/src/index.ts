@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import AuthRoutes from "./routes/AuthRoutes";
+import SurveyRoutes from "./routes/SurveyRoutes";
+import UserRoutes from "./routes/UserRoutes";
 
 dotenv.config();
 const PORT = process.env.PORT || 8888;
@@ -23,6 +25,8 @@ app.use(
 );
 
 app.use("/api/auth", AuthRoutes);
+app.use("/api/survey", SurveyRoutes);
+app.use("/api/user", UserRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI as string)

@@ -1,8 +1,6 @@
-"use client";
-
 import { z } from "zod";
 
-export const adminFormSchema = z.object({
+export const adminLoginFormSchema = z.object({
   email: z.string().email({
     message: "Enter a valid email!",
   }),

@@ -6,9 +6,10 @@ import AuthLayout from "./layout/AuthLayout";
 import AdminLogin from "./pages/AdminLogin";
 import Home from "./pages/Home";
 import Admin from "./pages/admin/Admin";
+import CreateSurvey from "./pages/admin/CreateSurvey";
 import Survey from "./pages/admin/Survey";
 import Users from "./pages/admin/Users";
-import CreateSurvey from "./pages/admin/CreateSurvey";
+import CreateUserModal from "./components/modals/CreateUserModal";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
       </Routes>
       <Toaster />
       <CreateSurveyModal />
+      <CreateUserModal />
     </>
   );
 }

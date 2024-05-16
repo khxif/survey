@@ -8,7 +8,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { adminFormSchema } from "@/formSchemas/adminSchema";
+import { adminLoginFormSchema } from "@/formSchemas/adminSchema";
 import { useTokenStore } from "@/store/tokenStore";
 import { useUserStore } from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,15 +23,15 @@ export default function AdminLoginForm() {
   const setToken = useTokenStore((state) => state.setToken);
   const setUser = useUserStore((state) => state.setUser);
 
-  const form = useForm<z.infer<typeof adminFormSchema>>({
-    resolver: zodResolver(adminFormSchema),
+  const form = useForm<z.infer<typeof adminLoginFormSchema>>({
+    resolver: zodResolver(adminLoginFormSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const handleSubmit = async (values: z.infer<typeof adminFormSchema>) => {
+  const handleSubmit = async (values: z.infer<typeof adminLoginFormSchema>) => {
     const res = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}/api/auth/admin/login`,
       {

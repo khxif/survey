@@ -7,8 +7,6 @@ export default function AdminProtected({ children }: ChildrenProps) {
   const user = useUserStore((state) => state.user);
 
   useEffect(() => {
-    console.log(user);
-
     if (user?.role !== "Super-Admin") return navigate("/admin/login");
   }, [user]);
   return <>{children}</>;

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -18,12 +19,10 @@ import { surveyFormSchema } from "@/formSchemas/surveyFormSchema";
 import { useModalStore } from "@/store/modalStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { z } from "zod";
-import { Textarea } from "../ui/textarea";
+import FileUpload from "../FileUpload";
 
 export function CreateSurveyModal() {
-  const navigate = useNavigate();
   const [createSurveyModalOpen, setCreateSurveyModalOpen] = useModalStore(
     (state) => [state.createSurveyModalOpen, state.setCreateSurveyModalOpen]
   );
@@ -31,15 +30,33 @@ export function CreateSurveyModal() {
   const form = useForm<z.infer<typeof surveyFormSchema>>({
     resolver: zodResolver(surveyFormSchema),
     defaultValues: {
-      survey_name: "",
-      description: "",
+      name: "",
+      pdfUrl: "",
     },
   });
 
   const handleSubmit = async (values: z.infer<typeof surveyFormSchema>) => {
     console.log(values);
-    navigate("/admin/survey/create");
-    setCreateSurveyModalOpen(false)
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/survey/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+      console.log(data);
+      
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setCreateSurveyModalOpen(false);
+    }
   };
   return (
     <Dialog
@@ -59,7 +76,7 @@ export function CreateSurveyModal() {
             >
               <FormField
                 control={form.control}
-                name="survey_name"
+                name="name"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Survey Name</FormLabel>
@@ -73,15 +90,14 @@ export function CreateSurveyModal() {
 
               <FormField
                 control={form.control}
-                name="description"
+                name="pdfUrl"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>Upload Instruction PDF</FormLabel>
                     <FormControl>
-                      <Textarea
-                        rows={4}
-                        placeholder="Describe the survey..."
-                        {...field}
+                      <FileUpload
+                        value={field.value}
+                        onChange={field.onChange}
                       />
                     </FormControl>
                     <FormMessage />
@@ -89,14 +105,11 @@ export function CreateSurveyModal() {
                 )}
               />
               <div className="w-full flex items-center space-x-6">
-                <Button
-                  variant="destructive"
-                  size="lg"
-                  className="w-full"
-                  onClick={() => setCreateSurveyModalOpen(false)}
-                >
-                  Cancel
-                </Button>
+                <DialogClose className="w-full">
+                  <Button variant="destructive" size="lg" className="w-full">
+                    Cancel
+                  </Button>
+                </DialogClose>
                 <Button size="lg" className="w-full">
                   Proceed
                 </Button>
