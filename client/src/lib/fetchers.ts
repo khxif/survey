@@ -26,3 +26,18 @@ export const getAllUsers = async (token: string | null) => {
     console.log(error);
   }
 };
+
+export const getSurvey = async (id: string | undefined) => {
+  try {
+    if (!id) return;
+
+    const res = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/survey/${id}`
+    );
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

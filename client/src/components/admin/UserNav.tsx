@@ -10,10 +10,21 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTokenStore } from "@/store/tokenStore";
 import { useUserStore } from "@/store/userStore";
 
 export default function UserNav() {
-  const user = useUserStore((state) => state.user);
+  const setToken = useTokenStore((state) => state.setToken);
+  const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
+
+  const logout = async () => {
+    try {
+      setToken(null);
+      setUser(null);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -44,9 +55,9 @@ export default function UserNav() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={logout}>
           Log out
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+          <DropdownMenuShortcut>⇧⌘L</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

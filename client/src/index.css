@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply h-svh w-svw overflow-hidden;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

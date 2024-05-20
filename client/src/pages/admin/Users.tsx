@@ -1,15 +1,11 @@
-import UsersTable from "@/components/admin/table/UsersTable";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import DashBoardBreadCrumbs from "@/components/DashBoardBreadCrumbs";
+import Loading from "@/components/Loading";
 import { Button } from "@/components/ui/button";
 import { useModalStore } from "@/store/modalStore";
 import { PlusCircle } from "lucide-react";
+import { Suspense, lazy } from "react";
+
+const UsersTable = lazy(() => import("@/components/admin/table/UsersTable"));
 
 export default function Users() {
   const setCreateUserModalOpen = useModalStore(
@@ -18,20 +14,7 @@ export default function Users() {
   return (
     <div className="w-full py-4 px-6">
       <nav className="items-center justify-between w-full flex">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink className="text-base" href="/admin">
-                Dashboard
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Users</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-
+        <DashBoardBreadCrumbs page="Users" />
         <Button
           onClick={() => setCreateUserModalOpen(true)}
           className="flex items-center space-x-2"
@@ -40,8 +23,10 @@ export default function Users() {
           <PlusCircle className="size-5" />
         </Button>
       </nav>
-      <div className="items-center justify-center py-4">
-        <UsersTable />
+      <div className="items-center h-full justify-center py-4">
+        <Suspense fallback={<Loading />}>
+          <UsersTable />
+        </Suspense>
       </div>
     </div>
   );

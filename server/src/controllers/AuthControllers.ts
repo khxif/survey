@@ -72,3 +72,13 @@ export const getUser = async (req: Request, res: Response) => {
     res.status(500).json({ message: (error as Error)?.message });
   }
 };
+
+export const logout = async (req: Request, res: Response) => {
+  try {
+    res.clearCookie("name");
+    res.clearCookie("email");
+  } catch (error) {
+    console.log(`Logout error: ${(error as Error)?.message}`);
+    res.status(500).json({ message: (error as Error)?.message });
+  }
+};

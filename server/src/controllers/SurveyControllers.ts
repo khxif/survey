@@ -32,3 +32,27 @@ export const getAllSurveys = async (req: Request, res: Response) => {
     res.status(500).json({ message: (error as Error)?.message });
   }
 };
+
+export const getSurvey = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const survey = await Survey.findById(id);
+
+    return res.status(200).json(survey);
+  } catch (error) {
+    console.log(`Get Survey error: ${(error as Error)?.message}`);
+    res.status(500).json({ message: (error as Error)?.message });
+  }
+};
+
+export const deleteSurvey = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const survey = await Survey.findOneAndDelete({ _id: id });
+
+    return res.status(200).json(survey);
+  } catch (error) {
+    console.log(`Get Survey error: ${(error as Error)?.message}`);
+    res.status(500).json({ message: (error as Error)?.message });
+  }
+};

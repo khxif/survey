@@ -19,10 +19,12 @@ import { surveyFormSchema } from "@/formSchemas/surveyFormSchema";
 import { useModalStore } from "@/store/modalStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useQueryClient } from "react-query";
 import { z } from "zod";
 import FileUpload from "../FileUpload";
 
 export function CreateSurveyModal() {
+  const QueryClient = useQueryClient();
   const [createSurveyModalOpen, setCreateSurveyModalOpen] = useModalStore(
     (state) => [state.createSurveyModalOpen, state.setCreateSurveyModalOpen]
   );
@@ -36,7 +38,6 @@ export function CreateSurveyModal() {
   });
 
   const handleSubmit = async (values: z.infer<typeof surveyFormSchema>) => {
-    console.log(values);
     try {
       const res = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/survey/create`,
@@ -51,7 +52,7 @@ export function CreateSurveyModal() {
       );
       const data = await res.json();
       console.log(data);
-      
+      QueryClient.invalidateQueries("surveys");
     } catch (error) {
       console.log(error);
     } finally {
