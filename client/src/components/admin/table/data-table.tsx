@@ -95,7 +95,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 space-x-4">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -176,7 +176,7 @@ export function DataTable<TData, TValue>({
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuLabel>
-                          {row.getValue('username')}
+                          {row.getValue("username")}
                         </DropdownMenuLabel>
                         <DropdownMenuItem
                           onClick={() => handleDelete(row.getValue("username"))}

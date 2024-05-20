@@ -12,8 +12,8 @@ export default function Users() {
     (state) => state.setCreateUserModalOpen
   );
   return (
-    <div className="w-full py-4 px-6">
-      <nav className="items-center justify-between w-full flex">
+    <div className="w-full h-full py-4 px-4 md:px-6">
+      <nav className="items-center justify-between h-full w-full flex">
         <DashBoardBreadCrumbs page="Users" />
         <Button
           onClick={() => setCreateUserModalOpen(true)}

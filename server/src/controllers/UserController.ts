@@ -19,6 +19,10 @@ export const createUser = async (req: Request, res: Response) => {
     if (!username || !email || !role || !password)
       return res.status(400).json({ message: "Missing Credentials.." });
 
+    const existingUser = await User.findOne({ email });
+    if (existingUser)
+      return res.status(400).json({ message: "Email already Registered!" });
+
     const hashedPassword = await hashPassword(password);
 
     const user = await new User({

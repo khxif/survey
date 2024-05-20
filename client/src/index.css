@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply h-svh w-svw overflow-hidden;
+  @apply max-h-screen w-full overflow-y-hidden;
 }
 
 @layer base {
