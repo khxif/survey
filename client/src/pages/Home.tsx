@@ -39,7 +39,7 @@ export default function Home() {
   survey.applyTheme(SharpDark);
   return (
     <main className="py-4 space-y-4">
-      <Link to="/admin/login" className="my-4">
+      <Link to="/admin" className="my-4">
         <Button>Admin Dashboard</Button>
       </Link>
       <Survey model={survey} />

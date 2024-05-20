@@ -11,7 +11,7 @@ export default function Survey() {
     (state) => state.setCreateSurveyModalOpen
   );
   return (
-    <section className="flex flex-col px-8 h-full w-full">
+    <section className="flex flex-col px-4 md:px-8 h-full w-full">
       <div className="flex items-center justify-between w-full mt-4">
         <DashBoardBreadCrumbs page="Survey" />
         <Button
@@ -21,7 +21,7 @@ export default function Survey() {
           Add Survey
         </Button>
       </div>
-      <div className="py-5">
+      <div className="py-5 h-full">
         <main className="space-y-6 h-full">
           {surveys &&
             surveys?.map((survey: Survey) => (
