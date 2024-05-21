@@ -7,7 +7,7 @@ import "survey-core/defaultV2.min.css";
 export default function Home() {
   const { surveys, isLoading } = useSurveys();
   return (
-    <main className="py-4 px-4 max-w-7xl mx-auto ">
+    <main className="py-4 px-4 max-w-7xl mx-auto">
       <h1 className="text-2xl text-center font-medium">All Surveys</h1>
 
       <div className="flex flex-col space-y-4 py-5">

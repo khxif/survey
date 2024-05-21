@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply max-h-screen w-full overflow-y-hidden;
-}
 
 @layer base {
   :root {

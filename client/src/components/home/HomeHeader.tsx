@@ -5,7 +5,7 @@ import DarkModeToggle from "../admin/DarModeToggle";
 
 export default function HomeHeader() {
   return (
-    <header className="py-4 flex items-center justify-between px-4 md:px-8">
+    <header className="py-4 flex items-center justify-between px-4 md:px-8 sticky top-0">
       <Link to="/">
         <Logo />
       </Link>
