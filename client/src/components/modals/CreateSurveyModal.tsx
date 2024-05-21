@@ -22,9 +22,12 @@ import { useForm } from "react-hook-form";
 import { useQueryClient } from "react-query";
 import { z } from "zod";
 import FileUpload from "../FileUpload";
+import { useTokenStore } from "@/store/tokenStore";
 
-export function CreateSurveyModal() {
+export default function CreateSurveyModal() {
   const QueryClient = useQueryClient();
+
+  const token = useTokenStore((state) => state.token);
   const [createSurveyModalOpen, setCreateSurveyModalOpen] = useModalStore(
     (state) => [state.createSurveyModalOpen, state.setCreateSurveyModalOpen]
   );
@@ -45,6 +48,7 @@ export function CreateSurveyModal() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `${token}`,
           },
           body: JSON.stringify(values),
           credentials: "include",

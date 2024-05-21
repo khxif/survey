@@ -1,4 +1,5 @@
-declare module "survey-core/themes/sharp-dark";
+declare module "survey-core/themes/layered-dark";
+declare module "survey-core/themes/plain-light";
 
 interface ChildrenProps {
   children: React.ReactNode;

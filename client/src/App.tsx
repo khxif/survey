@@ -1,21 +1,26 @@
-import { CreateSurveyModal } from "@/components/modals/CreateSurveyModal";
+import CreateSurveyModal from "@/components/modals/CreateSurveyModal";
 import CreateUserModal from "@/components/modals/CreateUserModal";
 import AdminLayout from "@/layout/AdminLayout";
 import AuthLayout from "@/layout/AuthLayout";
+import HomeLayout from "@/layout/HomeLayout";
 import AdminLogin from "@/pages/AdminLogin";
 import Home from "@/pages/Home";
+import SurveyForm from "@/pages/SurveyForm";
 import Admin from "@/pages/admin/Admin";
 import EditSurvey from "@/pages/admin/EditSurvey";
 import Survey from "@/pages/admin/Survey";
 import Users from "@/pages/admin/Users";
-import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
+import { Toaster } from "sonner";
 
 export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route element={<HomeLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/survey/:id" element={<SurveyForm />} />
+        </Route>
         <Route element={<AdminLayout />}>
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/survey" element={<Survey />} />
@@ -26,7 +31,7 @@ export default function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
         </Route>
       </Routes>
-      <Toaster />
+      <Toaster richColors={true} position="top-center" />
       <CreateSurveyModal />
       <CreateUserModal />
     </>

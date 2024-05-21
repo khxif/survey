@@ -27,18 +27,4 @@ export const columns: ColumnDef<User>[] = [
     },
     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
   },
-  {
-    accessorKey: "password",
-    header: "Password",
-  },
-  // {
-  //   id: "actions",
-  //   enableHiding: false,
-  //   cell: ({ row }) => {
-  //     const id = row.original._id;
-  //     return (
-
-  //     );
-  //   },
-  // },
 ];

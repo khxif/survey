@@ -32,6 +32,6 @@ export default function ValidateToken({ children }: ChildrenProps) {
       }
     }
     verifyToken();
-  }, [token]);
+  }, [token, setToken, setUser]);
   return <>{children}</>;
 }

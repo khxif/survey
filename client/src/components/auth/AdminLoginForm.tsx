@@ -14,8 +14,8 @@ import { useUserStore } from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jwtDecode } from "jwt-decode";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { z } from "zod";
 
 export default function AdminLoginForm() {
@@ -46,9 +46,7 @@ export default function AdminLoginForm() {
     const data = await res.json();
     if (!res.ok) return toast.error(data.message);
 
-    console.log(data);
     const decoded = jwtDecode(data) as User;
-    console.log(decoded);
 
     setToken(data);
     setUser({

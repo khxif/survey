@@ -32,6 +32,7 @@ import {
 } from "@tanstack/react-table";
 import * as React from "react";
 import { useQueryClient } from "react-query";
+import { toast } from "sonner";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -60,9 +61,13 @@ export function DataTable<TData, TValue>({
       );
       const data = await res.json();
       console.log(data);
+      if (!res.ok) return toast.error("Something went wrong..");
+
+      toast.success("User Deleted");
       QueryClient.invalidateQueries("users");
     } catch (error) {
       console.log(error);
+      toast.error((error as Error)?.message || "Something went wrong..");
     }
   };
 
@@ -95,7 +100,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4 space-x-4">
+      <div className="flex items-center justify-between py-4 space-x-4">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}

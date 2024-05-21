@@ -1,48 +1,29 @@
-import { Button } from "@/components/ui/button";
+import Loading from "@/components/Loading";
+import { useSurveys } from "@/hooks/useSurveys";
+import { MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Model } from "survey-core";
 import "survey-core/defaultV2.min.css";
-import { SharpDark } from "survey-core/themes/sharp-dark";
-import { Survey } from "survey-react-ui";
-
-const surveyJson = {
-  questions: [
-    {
-      name: "FirstName",
-      title: "Enter your first name:",
-      type: "text",
-    },
-    {
-      name: "LastName",
-      title: "Enter your last name:",
-      type: "text",
-    },
-    {
-      name: "Pets",
-      title: "Do you have pets?",
-      type: "radiogroup",
-      choices: ["Yes", "No"],
-      visibleIf: "{FirstName} notempty and {LastName} notempty",
-    },
-    {
-      name: "PetType",
-      title: "What type of pet do you have?",
-      type: "radiogroup",
-      choices: ["Cat", "Dog", "Other"],
-      visibleIf: "{Pets} = 'Yes'",
-    },
-  ],
-};
 
 export default function Home() {
-  const survey = new Model(surveyJson);
-  survey.applyTheme(SharpDark);
+  const { surveys, isLoading } = useSurveys();
   return (
-    <main className="py-4 space-y-4">
-      <Link to="/admin" className="my-4">
-        <Button>Admin Dashboard</Button>
-      </Link>
-      <Survey model={survey} />
+    <main className="py-4 px-4 max-w-7xl mx-auto ">
+      <h1 className="text-2xl text-center font-medium">All Surveys</h1>
+
+      <div className="flex flex-col space-y-4 py-5">
+        {surveys &&
+          surveys.map((survey: Survey) => (
+            <Link to={`/survey/${survey._id}`}>
+              <div className="bg-secondary px-6 py-4 rounded-md flex-1 flex items-center justify-between">
+                {survey.name}
+                <div className="space-x-5">
+                  <MoveRight className="size-6" />
+                </div>
+              </div>
+            </Link>
+          ))}
+        {isLoading && <Loading />}
+      </div>
     </main>
   );
 }

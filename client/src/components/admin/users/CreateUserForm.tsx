@@ -17,13 +17,13 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { createUserFormSchema } from "@/formSchemas/createUserFormSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { z } from "zod";
-import { useQueryClient } from "react-query";
 import { useModalStore } from "@/store/modalStore";
 import { useTokenStore } from "@/store/tokenStore";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useQueryClient } from "react-query";
+import { toast } from "sonner";
+import { z } from "zod";
 
 export default function CreateUserForm() {
   const queryClient = useQueryClient();

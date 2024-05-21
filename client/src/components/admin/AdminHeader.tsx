@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
+import Logo from "../Logo";
+import DarkModeToggle from "./DarModeToggle";
 import MobileSidebar from "./MobileSidebar";
 import UserNav from "./UserNav";
-import DarkModeToggle from "./DarModeToggle";
-import Logo from "../Logo";
 
 export default function AdminHeader() {
   return (
