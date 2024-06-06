@@ -1,5 +1,24 @@
 import mongoose from "mongoose";
 
+const questionSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+    enum: ["radiogroup", "comment", "text", "boolean", "rating"],
+  },
+  choices: {
+    type: [String],
+  },
+});
+
 const surveySchema = new mongoose.Schema({
   name: {
     type: String,
@@ -10,6 +29,7 @@ const surveySchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  questions: [questionSchema],
 });
 
 export const Survey =

@@ -12,6 +12,7 @@ import Survey from "@/pages/admin/Survey";
 import Users from "@/pages/admin/Users";
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
+import AddQuestionModal from "./components/modals/AddQuestionModal";
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
       <Toaster richColors={true} position="top-center" />
       <CreateSurveyModal />
       <CreateUserModal />
+      <AddQuestionModal />
     </>
   );
 }

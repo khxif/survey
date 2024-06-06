@@ -6,4 +6,7 @@ export const useModalStore = create<ModalStore>((set) => ({
 
   createUserModalOpen: false,
   setCreateUserModalOpen: (open) => set({ createUserModalOpen: open }),
+
+  addQuestionModalOpen: false,
+  setAddQuestionModalOpen: (open) => set({addQuestionModalOpen:open})
 }));
