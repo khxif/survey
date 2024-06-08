@@ -4,7 +4,10 @@ import { Button } from "../ui/button";
 
 export default function HomeHeader() {
   return (
-    <header className="py-4 flex items-center justify-between px-4 md:px-8 sticky top-0 border-b border-b-blue-800">
+    <header
+      className="py-4 flex items-center justify-between px-4 md:px-8 sticky top-0
+    z-50 bg-white border-b border-b-blue-800"
+    >
       <Link to="/">
         <Logo />
       </Link>
