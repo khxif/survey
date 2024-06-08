@@ -44,7 +44,7 @@ export default function DashboardNav() {
                 className={cn(
                   "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
                   item.isVisible ? "flex" : "hidden",
-                  item.isActive ? "bg-accent" : "transparent"
+                  item.isActive ? "bg-accent text-black" : "transparent"
                 )}
               >
                 <item.icon className="mr-2 h-4 w-4" />

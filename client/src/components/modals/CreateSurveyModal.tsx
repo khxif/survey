@@ -115,7 +115,10 @@ export default function CreateSurveyModal() {
                     Cancel
                   </Button>
                 </DialogClose>
-                <Button size="lg" className="w-full">
+                <Button
+                  size="lg"
+                  className="w-full bg-blue-950 hover:bg-blue-950 hover:bg-blue-950/80"
+                >
                   Proceed
                 </Button>
               </div>

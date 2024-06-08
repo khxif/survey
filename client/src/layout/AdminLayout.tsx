@@ -7,7 +7,7 @@ export default function AdminLayout() {
   return (
     <AdminProtected>
       <AdminHeader />
-      <main className="flex">
+      <main className="flex h-screen overflow-hidden">
         <AdminSidebar />
         <Outlet />
       </main>

@@ -5,6 +5,8 @@ import { DataTable } from "./data-table";
 
 export default function UsersTable() {
   const { users, isLoading } = useUsers();
+  console.log(users);
+  
   return (
     <>
       {isLoading && <Loading />}

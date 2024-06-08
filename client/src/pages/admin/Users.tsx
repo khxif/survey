@@ -14,12 +14,12 @@ export default function Users() {
   );
   return (
     <SuperAdminProtected>
-      <div className="w-full h-full py-4 px-4 md:px-6">
-        <nav className="items-center justify-between h-full w-full flex">
+      <div className="w-full py-4 h-full px-4 md:px-6 overflow-y-scroll scrollbar-hide">
+        <nav className="items-center justify-between w-full flex">
           <DashBoardBreadCrumbs page="Users" />
           <Button
             onClick={() => setCreateUserModalOpen(true)}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 bg-blue-950 hover:bg-blue-950 hover:bg-blue-950/80"
           >
             <p>Create Users</p>
             <PlusCircle className="size-5" />

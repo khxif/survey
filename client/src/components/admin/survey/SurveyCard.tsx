@@ -32,7 +32,9 @@ export default function SurveyCard({ survey }: { survey: Survey }) {
       {survey.name}
       <div className="space-x-5">
         <Link to={`/admin/survey/${survey._id}`}>
-          <Button>Edit</Button>
+          <Button className="bg-blue-950 hover:bg-blue-950 hover:bg-blue-950/80">
+            Edit
+          </Button>
         </Link>
         <Button onClick={() => deleteSurvey(survey?._id)} variant="destructive">
           Delete

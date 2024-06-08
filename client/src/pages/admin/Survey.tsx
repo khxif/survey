@@ -15,7 +15,8 @@ export default function Survey() {
       <div className="flex items-center justify-between w-full mt-4">
         <DashBoardBreadCrumbs page="Survey" />
         <Button
-          className="items-end max-w-fit justify-end ml-auto px-4 md:px-6"
+          className="items-end max-w-fit justify-end ml-auto px-4 md:px-6
+           bg-blue-950 hover:bg-blue-950 hover:bg-blue-950/80"
           onClick={() => setCreateSurveyModalOpen(true)}
         >
           Add Survey

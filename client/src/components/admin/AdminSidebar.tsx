@@ -4,7 +4,7 @@ import DashboardNav from "../DashboardNav";
 export default function AdminSidebar() {
   return (
     <aside
-      className={cn(`relative hidden h-full overflow-y-hidden border-r py-4 lg:block w-72`)}
+      className={cn(`relative hidden h-full text-white overflow-y-hidden border-r py-4 lg:block w-72 bg-blue-950`)}
     >
       <div className="space-y-4 py-4">
         <div className="px-3 py-2">

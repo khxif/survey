@@ -50,7 +50,10 @@ export default function EditSurvey() {
     }
   };
   return (
-    <section className="flex flex-col space-y-5 max-w-5xl mx-auto w-screen h-full py-6 md:py-10 px-4">
+    <section
+      className="flex flex-col space-y-5 max-w-5xl mx-auto w-screen
+     h-full py-6 md:py-10 px-4 overflow-y-scroll scrollbar-hide"
+    >
       <div className="space-y-2">
         <Label className="text-lg">Survey Name</Label>
         <Input
@@ -69,11 +72,14 @@ export default function EditSurvey() {
         <h1 className="text-2xl font-medium">Questions</h1>
 
         <div className="flex items-center space-x-4">
-          <Button onClick={() => setAddQuestionModalOpen(true)}>
+          <Button
+            onClick={() => setAddQuestionModalOpen(true)}
+            className="bg-blue-950 hover:bg-blue-950 hover:bg-blue-950/80"
+          >
             Add Questions
           </Button>
           <Link to={`/survey/${survey?._id}`}>
-            <Button className="flex items-center space-x-2">
+            <Button className="flex items-center space-x-2 bg-blue-950 hover:bg-blue-950 hover:bg-blue-950/80">
               <Pencil className="size-5" />
               <p>Preview</p>
             </Button>

@@ -163,7 +163,11 @@ export default function CreateUserForm() {
             )}
           />
 
-          <Button type="submit" size="lg" className="w-full">
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full bg-blue-950 hover:bg-blue-950 hover:bg-blue-950/80"
+          >
             Submit
           </Button>
         </form>
