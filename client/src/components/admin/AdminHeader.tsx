@@ -1,9 +1,11 @@
 import { cn } from "@/lib/utils";
 import { Home } from "lucide-react";
+import { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../Logo";
-import MobileSidebar from "./MobileSidebar";
-import UserNav from "./UserNav";
+
+const MobileSidebar = lazy(() => import("./MobileSidebar"));
+const UserNav = lazy(() => import("./UserNav"));
 
 export default function AdminHeader() {
   return (
@@ -18,15 +20,18 @@ export default function AdminHeader() {
           </Link>
         </div>
         <div className={cn("block lg:!hidden")}>
-          <MobileSidebar />
+          <Suspense fallback={null}>
+            <MobileSidebar />
+          </Suspense>
         </div>
 
         <div className="flex items-center gap-4">
           <Link to="/">
             <Home className="size-5" />
           </Link>
-          {/* <DarkModeToggle /> */}
-          <UserNav />
+          <Suspense fallback={null}>
+            <UserNav />
+          </Suspense>
         </div>
       </nav>
     </div>

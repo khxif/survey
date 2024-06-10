@@ -1,38 +1,42 @@
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/store/userStore";
 import { FolderKanban, LayoutDashboard, Users } from "lucide-react";
+import { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function DashboardNav() {
   const location = useLocation();
   const user = useUserStore((state) => state.user);
 
-  const items = [
-    {
-      id: 1,
-      label: "Dashboard",
-      to: "/admin",
-      icon: LayoutDashboard,
-      isActive: location.pathname === "/admin",
-      isVisible: true,
-    },
-    {
-      id: 2,
-      label: "Manage Users",
-      to: "/admin/users",
-      icon: Users,
-      isActive: location.pathname === "/admin/users",
-      isVisible: user?.role === "Super-Admin",
-    },
-    {
-      id: 3,
-      label: "Manage Survey",
-      to: "/admin/survey",
-      icon: FolderKanban,
-      isActive: location.pathname.startsWith("/admin/survey"),
-      isVisible: true,
-    },
-  ] as const;
+  const items = useMemo(
+    () => [
+      {
+        id: 1,
+        label: "Dashboard",
+        to: "/admin",
+        icon: LayoutDashboard,
+        isActive: location.pathname === "/admin",
+        isVisible: true,
+      },
+      {
+        id: 2,
+        label: "Manage Users",
+        to: "/admin/users",
+        icon: Users,
+        isActive: location.pathname === "/admin/users",
+        isVisible: user?.role === "Super-Admin",
+      },
+      {
+        id: 3,
+        label: "Manage Survey",
+        to: "/admin/survey",
+        icon: FolderKanban,
+        isActive: location.pathname.startsWith("/admin/survey"),
+        isVisible: true,
+      },
+    ],
+    [location.pathname, user?.role]
+  );
 
   return (
     <nav className="grid items-start gap-2">

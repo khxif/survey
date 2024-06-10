@@ -13,8 +13,6 @@ export default function HomeHeader() {
       </Link>
 
       <div className="flex items-center space-x-4">
-        {/* <DarkModeToggle /> */}
-
         <Link to="/admin">
           <Button
             size="lg"
