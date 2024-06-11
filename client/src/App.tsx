@@ -90,13 +90,13 @@ export default function App() {
         />
       </Routes>
       <Toaster richColors={true} position="top-center" />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={null}>
         <CreateSurveyModal />
       </Suspense>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={null}>
         <CreateUserModal />
       </Suspense>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={null}>
         <AddQuestionModal />
       </Suspense>
     </>

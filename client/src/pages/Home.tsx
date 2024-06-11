@@ -1,10 +1,11 @@
+import Loading from "@/components/Loading";
 import { useSurveys } from "@/hooks/useSurveys";
 import { MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import "survey-core/defaultV2.min.css";
 
 export default function Home() {
-  const { surveys } = useSurveys();
+  const { surveys, isLoading } = useSurveys();
   return (
     <main className="py-4 px-4 max-w-7xl mx-auto h-full">
       <h1 className="text-2xl text-center font-medium text-blue-800">
@@ -26,6 +27,7 @@ export default function Home() {
               </div>
             </Link>
           ))}
+        {isLoading && <Loading />}
       </div>
     </main>
   );
