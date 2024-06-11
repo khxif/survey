@@ -5,7 +5,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useModalStore } from "@/store/modalStore";
-import CreateUserForm from "../admin/users/CreateUserForm";
+import { Suspense, lazy } from "react";
+import Loading from "../Loading";
+
+const CreateUserForm = lazy(() => import("../admin/users/CreateUserForm"));
 
 export default function CreateUserModal() {
   const [createUserModalOpen, setCreateUserModalOpen] = useModalStore(
@@ -17,7 +20,9 @@ export default function CreateUserModal() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add Admins</DialogTitle>
-          <CreateUserForm />
+          <Suspense fallback={<Loading />}>
+            <CreateUserForm />
+          </Suspense>
         </DialogHeader>
       </DialogContent>
     </Dialog>

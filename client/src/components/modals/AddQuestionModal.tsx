@@ -5,7 +5,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useModalStore } from "@/store/modalStore";
-import AddQuestionForm from "../admin/survey/AddQuestionForm";
+import { Suspense, lazy } from "react";
+import Loading from "../Loading";
+
+const AddQuestionForm = lazy(() => import("../admin/survey/AddQuestionForm"));
 
 export default function AddQuestionModal() {
   const [addQuestionModalOpen, setAddQuestionModalOpen] = useModalStore(
@@ -16,7 +19,9 @@ export default function AddQuestionModal() {
       <DialogContent className="max-w-md md:max-w-lg rounded-lg">
         <DialogHeader>
           <DialogTitle>Create a question for your survey.</DialogTitle>
-          <AddQuestionForm />
+          <Suspense fallback={<Loading />}>
+            <AddQuestionForm />
+          </Suspense>
         </DialogHeader>
       </DialogContent>
     </Dialog>

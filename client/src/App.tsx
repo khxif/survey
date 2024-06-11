@@ -1,7 +1,4 @@
 import Loading from "@/components/Loading";
-import AddQuestionModal from "@/components/modals/AddQuestionModal";
-import CreateSurveyModal from "@/components/modals/CreateSurveyModal";
-import CreateUserModal from "@/components/modals/CreateUserModal";
 import AdminLayout from "@/layout/AdminLayout";
 import HomeLayout from "@/layout/HomeLayout";
 import { Suspense, lazy } from "react";
@@ -15,6 +12,16 @@ const Home = lazy(() => import("@/pages/Home"));
 const Survey = lazy(() => import("@/pages/admin/Survey"));
 const SurveyForm = lazy(() => import("@/pages/SurveyForm"));
 const Users = lazy(() => import("@/pages/admin/Users"));
+
+const CreateSurveyModal = lazy(
+  () => import("@/components/modals/CreateSurveyModal")
+);
+const CreateUserModal = lazy(
+  () => import("@/components/modals/CreateUserModal")
+);
+const AddQuestionModal = lazy(
+  () => import("@/components/modals/AddQuestionModal")
+);
 
 export default function App() {
   return (
@@ -83,9 +90,15 @@ export default function App() {
         />
       </Routes>
       <Toaster richColors={true} position="top-center" />
-      <CreateSurveyModal />
-      <CreateUserModal />
-      <AddQuestionModal />
+      <Suspense fallback={<Loading />}>
+        <CreateSurveyModal />
+      </Suspense>
+      <Suspense fallback={<Loading />}>
+        <CreateUserModal />
+      </Suspense>
+      <Suspense fallback={<Loading />}>
+        <AddQuestionModal />
+      </Suspense>
     </>
   );
 }
